@@ -5,9 +5,12 @@ from app.auth import get_current_user
 router = APIRouter()
 
 
-def build_notes(current_user, existing_notes=[]):
-    """Appends an audit note for who requested this report."""
+def build_notes(current_user, existing_notes=None):
+    if existing_notes is None:
+        existing_notes = []
+
     existing_notes.append(f"requested by {current_user.username}")
+
     return existing_notes
 
 
